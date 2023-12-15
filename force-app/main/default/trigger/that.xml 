@@ -1,0 +1,80 @@
+<Trigger>
+  <When>Transaction is created</When>
+  <Condition>
+    <Or>
+      <GreaterThan>
+        <Field>creditAmount</Field>
+        <Value>50000</Value>
+      </GreaterThan>
+      <GreaterThan>
+        <Field>transactionCount</Field>
+        <Value>3</Value>
+      </GreaterThan>
+    </Or>
+  </Condition>
+  <Action>
+    <If>
+      <GreaterThan>
+        <Field>creditAmount</Field>
+        <Value>50000</Value>
+      </GreaterThan>
+      <Then>
+        <ThrowError>
+          <Message>Your daily credit limit is exceeded.</Message>
+        </ThrowError>
+      </Then>
+      <Else>
+        <If>
+          <GreaterThan>
+            <Field>transactionCount</Field>
+            <Value>3</Value>
+          </GreaterThan>
+          <Then>
+            <ThrowError>
+              <Message>Transaction limit exceeded. You cannot perform more than 3 transactions in a day.</Message>
+            </ThrowError>
+          </Then>
+          <Else>
+            <UpdateField>
+              <Field>dailyCreditSpent</Field>
+              <Value>dailyCreditSpent + creditAmount</Value>
+            </UpdateField>
+            <UpdateField>
+              <Field>transactionCount</Field>
+              <Value>transactionCount + 1</Value>
+            </UpdateField>
+            <Confirm>
+              <Message>Transaction completed successfully.</Message>
+            </Confirm>
+          </Else>
+        </If>
+      </Else>
+    </If>
+  </Action>
+  <OnError>
+    <If>
+      <GreaterThan>
+        <Field>creditAmount</Field>
+        <Value>50000</Value>
+      </GreaterThan>
+      <Then>
+        <DisplayError>
+          <Message>Your daily credit limit is exceeded.</Message>
+        </DisplayError>
+      </Then>
+      <Else>
+        <If>
+          <GreaterThan>
+            <Field>transactionCount</Field>
+            <Value>3</Value>
+          </GreaterThan>
+          <Then>
+            <DisplayError>
+              <Message>Transaction limit exceeded. You cannot perform more than 3 transactions in a day.</Message>
+            </DisplayError>
+          </Then>
+        </If>
+      </Else>
+    </If>
+  </OnError>
+</Trigger>

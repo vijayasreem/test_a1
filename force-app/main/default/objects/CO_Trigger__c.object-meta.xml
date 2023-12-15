@@ -1,0 +1,37 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Transaction__c</fullName>
+    <label>Transaction</label>
+    <pluralLabel>Transactions</pluralLabel>
+    <nameField>
+        <label>Transaction Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>ReadWrite</sharingModel>
+    <fields>
+        <fullName>Credit_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Credit Amount</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Daily_Credit_Spent__c</fullName>
+        <externalId>false</externalId>
+        <label>Daily Credit Spent</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Transaction_Count__c</fullName>
+        <externalId>false</externalId>
+        <label>Transaction Count</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+    </fields>
+</CustomObject>
